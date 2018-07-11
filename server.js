@@ -8,9 +8,9 @@ var app = express();
 hbs.registerPartials(__dirname + "/views/partials");
 app.set("view engine", "hbs");
 
-app.use((req, res, next) => {
-    res.render('maintenance.hbs');
-});
+// app.use((req, res, next) => {
+//     res.render('maintenance.hbs');
+// });
 
 hbs.registerHelper("getCurrentYear", () => {
   return new Date().getFullYear();
@@ -55,6 +55,13 @@ app.get("/about", (req, res) => {
     pageTitle: "About Page2"
   });
 });
+
+app.get("/projects", (req, res) => {
+    res.render("projects.hbs", {
+      pageTitle: "Project Page Here",
+      welcomeMessage: 'These are my projects'
+    });
+  });
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}.`);
